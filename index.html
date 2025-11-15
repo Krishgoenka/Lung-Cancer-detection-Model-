@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Cancer Detection AI</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top, #1a1a1a, #000);
+            color: #fff;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            color: #bbb;
+            font-size: 16px;
+            margin-top: 0;
+        }
+        
+        .container {
+            margin: auto;
+            width: 400px;
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        input[type="file"] {
+            margin-top: 20px;
+            padding: 10px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: #aaa;
+            width: 90%;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            background: linear-gradient(45deg, #00eaff, #0088ff);
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #00eaff;
+        }
+
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1s ease;
+        }
+
+        img {
+            margin-top: 15px;
+            border-radius: 15px;
+            width: 300px;
+            border: 4px solid #00eaff;
+            box-shadow: 0 0 25px rgba(0, 234, 255, 0.3);
+        }
+
+        .confidence {
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 5px;
+            color: #00eaff;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lung Cancer Detection AI</h1>
+    <p>Upload a lung scan to detect: <b style="color:#00eaff">Malignant, Benign, or Normal</b></p>
+
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" required>
+            <br>
+            <button type="submit">Analyze Image</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result-box">
+            <h2>Prediction: {{ prediction }}</h2>
+            <p class="confidence">Confidence: {{ confidence }}%</p>
+            <img src="{{ file_path }}" alt="Uploaded Image">
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        Powered by Deep Learning ❤️ Built by Krish Goenka
+    </footer>
+
+</body>
+</html>
